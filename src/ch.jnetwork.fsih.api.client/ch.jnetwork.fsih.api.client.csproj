@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj" />
+  </ItemGroup>
+
+</Project>
