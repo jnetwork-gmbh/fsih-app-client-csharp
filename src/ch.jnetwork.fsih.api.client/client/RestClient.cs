@@ -43,23 +43,12 @@ namespace ch.jnetwork.fsih.api.client.client
         }
 
         /// <summary>
-        /// Get Ranking
-        /// </summary>
-        /// <param name="competitionId">Competition ID</param>
-        /// <param name="seasonId">Season ID</param>
-        /// <returns>Ranking for Competition in Season</returns>
-        public async Task<Ranking[]> GetRanking(int competitionId, int seasonId)
-        {
-            return await GetData<Ranking[]>($"/api/fsih_ranking/{competitionId}/{seasonId}");
-        }
-
-        /// <summary>
         /// Receive json from API and convert it to Object
         /// </summary>
         /// <typeparam name="T">Target of deserialization</typeparam>
         /// <param name="url">API URL</param>
         /// <returns>Task with deserialized data</returns>
-        private async Task<T> GetData<T>(string url) where T : class
+        public async Task<T> Get<T>(string url) where T : class
         {
             using (var response = await client.GetAsync(url))
             {
