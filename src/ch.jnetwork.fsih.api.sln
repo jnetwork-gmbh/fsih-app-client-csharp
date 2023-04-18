@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.client
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.dto", "ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj", "{75D9D478-5573-49B8-BC48-F444DE04046E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.jnetwork.fsih.api.model", "ch.jnetwork.fsih.api.model\ch.jnetwork.fsih.api.model.csproj", "{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.model", "ch.jnetwork.fsih.api.model\ch.jnetwork.fsih.api.model.csproj", "{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Properties", "Solution Properties", "{F412F55B-A9C2-4514-BBFB-6AFC6E30A99C}"
+	ProjectSection(SolutionItems) = preProject
+		version.props = version.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

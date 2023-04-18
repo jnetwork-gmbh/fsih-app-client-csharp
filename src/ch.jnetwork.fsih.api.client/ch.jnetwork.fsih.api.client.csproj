@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\version.props" />
+  
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>FSIH App API</Title>
+    <Description>C# Client for FSIH App API</Description>
   </PropertyGroup>
 
   <ItemGroup>
