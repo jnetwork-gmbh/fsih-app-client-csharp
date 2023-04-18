@@ -8,6 +8,8 @@ namespace ch.jnetwork.fsih.api.client.client
     /// </summary>
     public interface IRestClient : IDisposable
     {
-        Task<T> Get<T>(string url) where T : class;
+        T Get<T>(string url) where T : class;
+
+        Task<T> GetAsync<T>(string url) where T : class;
     }
 }

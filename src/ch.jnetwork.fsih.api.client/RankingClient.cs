@@ -17,7 +17,10 @@ namespace ch.jnetwork.fsih.api.client
         /// <returns>Array of Ranking Objects</returns>
         public Ranking[] Get(int competitionId, int seasonId)
         {
-            return GetAsync(competitionId, seasonId).Result;
+            using (IRestClient client = new RestClient())
+            {
+                return client.Get<Ranking[]>($"/api/fsih_ranking/{competitionId}/{seasonId}");
+            }
         }
 
         /// <summary>
@@ -30,7 +33,7 @@ namespace ch.jnetwork.fsih.api.client
         {
             using (IRestClient client = new RestClient())
             {
-                return await client.Get<Ranking[]>($"/api/fsih_ranking/{competitionId}/{seasonId}");
+                return await client.GetAsync<Ranking[]>($"/api/fsih_ranking/{competitionId}/{seasonId}");
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.IO;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -14,25 +14,24 @@ namespace ch.jnetwork.fsih.api.client.client
         /// <summary>
         /// Base URI of API
         /// </summary>
-        private const string BASEURL = "https://inline-hockey.ch";
+        private const string BASEURL = "http://inline-hockey.ch";
 
         /// <summary>
         /// HTTP Client to Access the API
         /// </summary>
-        private readonly HttpClient client;
+        private readonly WebClient client;
 
         /// <summary>
         /// Constructor
         /// </summary>
         public RestClient()
         {
-            client = new HttpClient
+            client = new WebClient
             {
-                BaseAddress = new Uri(BASEURL)
+                BaseAddress = BASEURL
             };
 
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.Headers.Add("Accept", "application/json");
         }
 
         /// <summary>
@@ -49,13 +48,28 @@ namespace ch.jnetwork.fsih.api.client.client
         /// <typeparam name="T">Target of deserialization</typeparam>
         /// <param name="url">API URL</param>
         /// <returns>Task with deserialized data</returns>
-        public async Task<T> Get<T>(string url) where T : class
+        public async Task<T> GetAsync<T>(string url) where T : class
         {
-            using (var response = await client.GetAsync(url))
+            var response = await client.DownloadDataTaskAsync(new Uri(new Uri(client.BaseAddress), url));
+            using (MemoryStream responseStream = new MemoryStream(response))
             {
-                var apiResponse = await response.Content.ReadAsStreamAsync();
+                var deserializedData = await JsonSerializer.DeserializeAsync<T>(responseStream);
+                return deserializedData;
+            }
+        }
 
-                var deserializedData = await JsonSerializer.DeserializeAsync<T>(apiResponse);
+        /// <summary>
+        /// Receive json from API and convert it to Object
+        /// </summary>
+        /// <typeparam name="T">Target of deserialization</typeparam>
+        /// <param name="url">API URL</param>
+        /// <returns>Task with deserialized data</returns>
+        public T Get<T>(string url) where T : class
+        {
+            var response = client.DownloadData(new Uri(new Uri(client.BaseAddress), url));
+            using (MemoryStream responseStream = new MemoryStream(response))
+            {
+                var deserializedData = JsonSerializer.Deserialize<T>(responseStream);
                 return deserializedData;
             }
         }
