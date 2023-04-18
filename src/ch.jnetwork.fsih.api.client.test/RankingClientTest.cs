@@ -8,7 +8,7 @@ namespace ch.jnetwork.fsih.api.client.test
         [TestMethod]
         public void GetRankings()
         {
-            RankingClient client = new RankingClient();
+            RankingClient client = new();
 
             Ranking[] result = client.Get(27, 12);
 
@@ -22,7 +22,7 @@ namespace ch.jnetwork.fsih.api.client.test
         [TestMethod]
         public void GetRankingsAsync()
         {
-            RankingClient client = new RankingClient();
+            RankingClient client = new();
 
             Ranking[] result = client.GetAsync(27, 12).Result;
 

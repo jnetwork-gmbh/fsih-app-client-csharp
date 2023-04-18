@@ -9,7 +9,7 @@ namespace ch.jnetwork.fsih.api.client.client
     /// <summary>
     /// HTTP Client to get data from FSIH App API
     /// </summary>
-    internal sealed class RestClient : IRestClient, IDisposable
+    internal sealed class RestClient : IRestClient
     {
         /// <summary>
         /// Base URI of API
@@ -26,9 +26,11 @@ namespace ch.jnetwork.fsih.api.client.client
         /// </summary>
         public RestClient()
         {
-            client = new HttpClient();
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(BASEURL)
+            };
 
-            client.BaseAddress = new Uri(BASEURL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

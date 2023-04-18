@@ -7,7 +7,7 @@ namespace ch.jnetwork.fsih.api.client
     /// <summary>
     /// Client to Get Rankings
     /// </summary>
-    public class RankingClient
+    public class RankingClient : IRankingClient
     {
         /// <summary>
         /// Get Ranking
@@ -28,7 +28,7 @@ namespace ch.jnetwork.fsih.api.client
         /// <returns>Task with Array of Ranking Objects</returns>
         public async Task<Ranking[]> GetAsync(int competitionId, int seasonId)
         {
-            using (RestClient client = new RestClient())
+            using (IRestClient client = new RestClient())
             {
                 return await client.Get<Ranking[]>($"/api/fsih_ranking/{competitionId}/{seasonId}");
             }
