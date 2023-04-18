@@ -1,5 +1,5 @@
 ﻿using ch.jnetwork.fsih.api.client.client;
-using ch.jnetwork.fsih.api.dto;
+using ch.jnetwork.fsih.api.model;
 using System.Threading.Tasks;
 
 namespace ch.jnetwork.fsih.api.client

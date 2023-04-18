@@ -5,9 +5,11 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.client", "ch.jnetwork.fsih.api.client\ch.jnetwork.fsih.api.client.csproj", "{B52A5E90-5563-44B4-946F-3E597725A0D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.jnetwork.fsih.api.client.test", "ch.jnetwork.fsih.api.client.test\ch.jnetwork.fsih.api.client.test.csproj", "{0C4A9836-D5DC-40B2-BBA8-9DDE51330D71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.client.test", "ch.jnetwork.fsih.api.client.test\ch.jnetwork.fsih.api.client.test.csproj", "{0C4A9836-D5DC-40B2-BBA8-9DDE51330D71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.jnetwork.fsih.api.dto", "ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj", "{75D9D478-5573-49B8-BC48-F444DE04046E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ch.jnetwork.fsih.api.dto", "ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj", "{75D9D478-5573-49B8-BC48-F444DE04046E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch.jnetwork.fsih.api.model", "ch.jnetwork.fsih.api.model\ch.jnetwork.fsih.api.model.csproj", "{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{75D9D478-5573-49B8-BC48-F444DE04046E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D9D478-5573-49B8-BC48-F444DE04046E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D9D478-5573-49B8-BC48-F444DE04046E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBF4F31-25E6-4993-8F1C-FBF821ABB128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

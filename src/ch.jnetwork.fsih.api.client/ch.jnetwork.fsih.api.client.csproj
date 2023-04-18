@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj" />
+    <ProjectReference Include="..\ch.jnetwork.fsih.api.model\ch.jnetwork.fsih.api.model.csproj" />
   </ItemGroup>
 
   <ItemGroup>

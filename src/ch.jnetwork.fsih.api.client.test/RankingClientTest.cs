@@ -1,4 +1,4 @@
-﻿using ch.jnetwork.fsih.api.dto;
+﻿using ch.jnetwork.fsih.api.model;
 
 namespace ch.jnetwork.fsih.api.client.test
 {

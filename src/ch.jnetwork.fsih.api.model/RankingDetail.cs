@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ch.jnetwork.fsih.api.dto
+namespace ch.jnetwork.fsih.api.model
 {
     /// <summary>
     /// Raning Details
