@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Product>FSIH App API</Product>
+    <Authors>Philipp Jenni</Authors>
+    <Company>jNetwork GmbH</Company>
+    <Copyright>© 2023 by jNetwork GmbH</Copyright>
+    <PackageProjectUrl>https://github.com/jnetwork-gmbh/fsih-app-client-csharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jnetwork-gmbh/fsih-app-client-csharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>0.1.0.0</Version>
+  </PropertyGroup>
+</Project>

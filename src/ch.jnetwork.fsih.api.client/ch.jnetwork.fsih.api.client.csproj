@@ -1,11 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\version.props" />
+  
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>FSIH App API</Title>
+    <Description>C# Client for FSIH App API</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ch.jnetwork.fsih.api.dto\ch.jnetwork.fsih.api.dto.csproj" />
+    <ProjectReference Include="..\ch.jnetwork.fsih.api.model\ch.jnetwork.fsih.api.model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).test</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
 </Project>

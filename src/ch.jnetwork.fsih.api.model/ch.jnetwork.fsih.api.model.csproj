@@ -3,12 +3,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Title>FSIH App DTO</Title>
-    <Description>C# Client for FSIH App API (DTO)</Description>
+    <Title>FSIH App Model</Title>
+    <Description>C# Client for FSIH App API (Model)</Description>
   </PropertyGroup>
-  
+    
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="7.0.2" />
+  </ItemGroup>
 
 </Project>
