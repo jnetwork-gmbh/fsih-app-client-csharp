@@ -52,6 +52,7 @@ namespace ch.jnetwork.fsih.api.client
                               ScoreOvertime = $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}",
                               ScorePenalty = $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}",
                               Score = $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}",
+                              HasGameDetails = x.WinnerId.HasValue && x.WinnerId.Value > 0
                           })
                           .ToArray();
 
@@ -81,6 +82,7 @@ namespace ch.jnetwork.fsih.api.client
                               ScoreOvertime = $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}",
                               ScorePenalty = $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}",
                               Score = $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}",
+                              HasGameDetails = x.WinnerId.HasValue && x.WinnerId.Value > 0
                           })
                           .ToArray();
 

@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using ch.jnetwork.fsih.api.model;
+using System.Runtime.InteropServices;
 
 namespace ch.jnetwork.fsih.api.client.test.Faker
 {
@@ -9,13 +10,14 @@ namespace ch.jnetwork.fsih.api.client.test.Faker
         {
         }
 
-        internal static Faker<Game> GetGames() => new Faker<Game>()
+        internal static Faker<Game> GetGames(bool withWinner) => new Faker<Game>()
             .RuleFor(x => x.DateTimeGame, f => f.Date.Recent())
             .RuleFor(x => x.Team1, f => GetTeam().Generate())
             .RuleFor(x => x.Team1Id, (f, itm) => itm.Team1.Id)
             .RuleFor(x => x.Team2, f => GetTeam().Generate())
             .RuleFor(x => x.Team2Id, (f, itm) => itm.Team2.Id)
             .RuleFor(x => x.DateTimeGame, f => f.Date.Recent())
+            .RuleFor(x => x.WinnerId, (f, item) => withWinner ? f.PickRandom(new List<int?>() { item.Team1Id, item.Team2Id }) : null)
             .RuleFor(x => x.Score, (f, itm) => new Dictionary<int, List<int>>
                 {
                     { itm.Team1Id, new List<int>

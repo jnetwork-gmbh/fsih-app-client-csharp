@@ -27,12 +27,12 @@ namespace ch.jnetwork.fsih.api.client.test
         }
 
         [TestMethod]
-        public void CheckGameResult()
+        public void CheckGameResult_WithGameDetails()
         {
             Mock<IGameClient> gameClientMock = new();
 
             gameClientMock.Setup(x => x.GetGames(1))
-                .Returns(GameFaker.GetGames()
+                .Returns(GameFaker.GetGames(true)
                 .Generate(10)
                 .ToArray());
 
@@ -43,17 +43,18 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
+            Assert.IsTrue(result[0].HasGameDetails);
             Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
             Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
             Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
         }
 
         [TestMethod]
-        public void CheckGameResultByTeam()
+        public void CheckGameResultByTeam_WithGameDetails()
         {
             Mock<IGameClient> gameClientMock = new();
 
-            var gamesList = GameFaker.GetGames().Generate(10).ToArray();
+            var gamesList = GameFaker.GetGames(true).Generate(10).ToArray();
 
             gameClientMock.Setup(x => x.GetGames(1))
                           .Returns(gamesList);
@@ -67,6 +68,56 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
+            Assert.IsTrue(result[0].HasGameDetails);
+            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
+            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
+            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
+            Assert.IsTrue(result.Length >= 1);
+        }
+
+        [TestMethod]
+        public void CheckGameResult_WithoutGameDetails()
+        {
+            Mock<IGameClient> gameClientMock = new();
+
+            gameClientMock.Setup(x => x.GetGames(1))
+                .Returns(GameFaker.GetGames(false)
+                .Generate(10)
+                .ToArray());
+
+            FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
+
+            var result = fsihAppApi.GetGames(1);
+
+            Assert.IsNotNull(result[0].TeamHome);
+            Assert.IsNotNull(result[0].TeamAway);
+            Assert.IsNotNull(result[0].GamePlace);
+            Assert.IsFalse(result[0].HasGameDetails);
+            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
+            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
+            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
+        }
+
+        [TestMethod]
+        public void CheckGameResultByTeam_WithoutGameDetails()
+        {
+            Mock<IGameClient> gameClientMock = new();
+
+            var gamesList = GameFaker.GetGames(false).Generate(10).ToArray();
+
+            gameClientMock.Setup(x => x.GetGames(1))
+                          .Returns(gamesList);
+
+            FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
+
+            var teamIdFilter = gamesList.First().Team1Id;
+
+            var result = fsihAppApi.GetGames(1, teamIdFilter);
+
+            Assert.IsNotNull(result[0].TeamHome);
+            Assert.IsNotNull(result[0].TeamAway);
+            Assert.IsNotNull(result[0].GamePlace);
+            Assert.IsFalse(result[0].HasGameDetails);
             Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
             Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
             Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
