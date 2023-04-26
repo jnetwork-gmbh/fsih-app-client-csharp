@@ -42,9 +42,10 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
-            Assert.IsTrue(result[0].ScorePenalty.IndexOf(':') > 0);
+            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
+            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
+            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
         }
-
 
         [TestMethod]
         public void CheckGameResultByTeam()
@@ -65,7 +66,9 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
-            Assert.IsTrue(result[0].ScorePenalty.IndexOf(':') > 0);
+            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
+            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
+            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
             Assert.IsTrue(result.Length >= 1);
         }
     }
