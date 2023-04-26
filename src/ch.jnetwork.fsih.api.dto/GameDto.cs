@@ -12,7 +12,7 @@ namespace ch.jnetwork.fsih.api.dto
         {
             get
             {
-                return ScoreOvertime != "0:0" && !HasPenalty;
+                return ScoreOvertime != "0:0" || HasPenalty;
             }
         }
 
@@ -24,6 +24,7 @@ namespace ch.jnetwork.fsih.api.dto
             }
         }
 
+        public int Id { get; set; }
         public string Score { get; set; }
         public string ScoreOvertime { get; set; }
         public string ScoreP1 { get; set; }

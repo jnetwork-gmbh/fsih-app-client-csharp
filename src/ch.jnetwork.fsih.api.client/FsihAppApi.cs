@@ -42,16 +42,17 @@ namespace ch.jnetwork.fsih.api.client
             GameDto[] result = gameClient.GetGames(competitionid)
                           .Select(x => new GameDto()
                           {
+                              Id = x.Id,
                               Date = x.DateTimeGame,
-                              GamePlace = places.SingleOrDefault(place => place.Id == x.GamePlaceId)?.Name ?? string.Empty,
+                              GamePlace = places.SingleOrDefault(place => place.Id == x.GamePlaceId)?.City ?? string.Empty,
                               TeamHome = x.Team1.Name,
                               TeamAway = x.Team2.Name,
-                              ScoreP1 = $"{x.Score[x.Team1Id][1]}:{x.Score[x.Team2Id][1]}",
-                              ScoreP2 = $"{x.Score[x.Team1Id][2]}:{x.Score[x.Team2Id][2]}",
-                              ScoreP3 = $"{x.Score[x.Team1Id][3]}:{x.Score[x.Team2Id][3]}",
-                              ScoreOvertime = $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}",
-                              ScorePenalty = $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}",
-                              Score = $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}",
+                              ScoreP1 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][1]}:{x.Score[x.Team2Id][1]}" : string.Empty,
+                              ScoreP2 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][2]}:{x.Score[x.Team2Id][2]}" : string.Empty,
+                              ScoreP3 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][3]}:{x.Score[x.Team2Id][3]}" : string.Empty,
+                              ScoreOvertime = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}" : string.Empty,
+                              ScorePenalty = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}" : string.Empty,
+                              Score = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}" : string.Empty,
                               HasGameDetails = x.WinnerId.HasValue && x.WinnerId.Value > 0
                           })
                           .ToArray();
@@ -72,16 +73,17 @@ namespace ch.jnetwork.fsih.api.client
                           .Where(x => x.Team1Id == teamId || x.Team2Id == teamId)
                           .Select(x => new GameDto()
                           {
+                              Id = x.Id,
                               Date = x.DateTimeGame,
-                              GamePlace = places.SingleOrDefault(place => place.Id == x.GamePlaceId)?.Name ?? string.Empty,
+                              GamePlace = places.SingleOrDefault(place => place.Id == x.GamePlaceId)?.City ?? string.Empty,
                               TeamHome = x.Team1.Name,
                               TeamAway = x.Team2.Name,
-                              ScoreP1 = $"{x.Score[x.Team1Id][1]}:{x.Score[x.Team2Id][1]}",
-                              ScoreP2 = $"{x.Score[x.Team1Id][2]}:{x.Score[x.Team2Id][2]}",
-                              ScoreP3 = $"{x.Score[x.Team1Id][3]}:{x.Score[x.Team2Id][3]}",
-                              ScoreOvertime = $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}",
-                              ScorePenalty = $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}",
-                              Score = $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}",
+                              ScoreP1 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][1]}:{x.Score[x.Team2Id][1]}" : string.Empty,
+                              ScoreP2 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][2]}:{x.Score[x.Team2Id][2]}" : string.Empty,
+                              ScoreP3 = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][3]}:{x.Score[x.Team2Id][3]}" : string.Empty,
+                              ScoreOvertime = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][4]}:{x.Score[x.Team2Id][4]}" : string.Empty,
+                              ScorePenalty = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][5]}:{x.Score[x.Team2Id][5]}" : string.Empty,
+                              Score = x.WinnerId.HasValue && x.WinnerId.Value > 0 ? $"{x.Score[x.Team1Id][0]}:{x.Score[x.Team2Id][0]}" : string.Empty,
                               HasGameDetails = x.WinnerId.HasValue && x.WinnerId.Value > 0
                           })
                           .ToArray();

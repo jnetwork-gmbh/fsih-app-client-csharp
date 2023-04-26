@@ -55,13 +55,13 @@ namespace ch.jnetwork.fsih.api.client.test
             Mock<IGameClient> gameClientMock = new();
 
             var gamesList = GameFaker.GetGames(true).Generate(10).ToArray();
+            var teamIdFilter = gamesList.First().Team1Id;
 
             gameClientMock.Setup(x => x.GetGames(1))
                           .Returns(gamesList);
 
             FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
 
-            var teamIdFilter = gamesList.First().Team1Id;
 
             var result = fsihAppApi.GetGames(1, teamIdFilter);
 
@@ -93,9 +93,7 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
             Assert.IsFalse(result[0].HasGameDetails);
-            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
-            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
-            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
+            Assert.IsTrue(string.IsNullOrEmpty(result[0].ScorePenalty));
         }
 
         [TestMethod]
@@ -118,9 +116,7 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsNotNull(result[0].TeamAway);
             Assert.IsNotNull(result[0].GamePlace);
             Assert.IsFalse(result[0].HasGameDetails);
-            Assert.IsTrue(result[0].ScorePenalty.Contains(':'));
-            Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
-            Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
+            Assert.IsTrue(string.IsNullOrEmpty(result[0].ScorePenalty));
             Assert.IsTrue(result.Length >= 1);
         }
 
@@ -160,7 +156,7 @@ namespace ch.jnetwork.fsih.api.client.test
                 ScorePenalty = "1:0"
             };
 
-            Assert.IsFalse(dto.HasOvertime);
+            Assert.IsTrue(dto.HasOvertime);
 
             dto = new GameDto()
             {
@@ -171,7 +167,7 @@ namespace ch.jnetwork.fsih.api.client.test
                 ScorePenalty = "1:0"
             };
 
-            Assert.IsFalse(dto.HasOvertime);
+            Assert.IsTrue(dto.HasOvertime);
         }
 
         [TestMethod]
