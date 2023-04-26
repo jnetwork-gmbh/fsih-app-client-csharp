@@ -1,4 +1,5 @@
 ﻿using ch.jnetwork.fsih.api.client.test.Faker;
+using ch.jnetwork.fsih.api.dto;
 using Moq;
 
 namespace ch.jnetwork.fsih.api.client.test
@@ -70,6 +71,106 @@ namespace ch.jnetwork.fsih.api.client.test
             Assert.IsFalse(result[0].ScorePenalty.StartsWith(':'));
             Assert.IsFalse(result[0].ScorePenalty.EndsWith(':'));
             Assert.IsTrue(result.Length >= 1);
+        }
+
+        [TestMethod]
+        public void ValidateHasOvertime()
+        {
+            GameDto dto;
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "0:0",
+                ScorePenalty = "0:0"
+            };
+
+            Assert.IsFalse(dto.HasOvertime);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "1:0",
+                ScorePenalty = "0:0"
+            };
+
+            Assert.IsTrue(dto.HasOvertime);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "1:0",
+                ScorePenalty = "1:0"
+            };
+
+            Assert.IsFalse(dto.HasOvertime);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "0:0",
+                ScorePenalty = "1:0"
+            };
+
+            Assert.IsFalse(dto.HasOvertime);
+        }
+
+        [TestMethod]
+        public void ValidateHasPenalty()
+        {
+            GameDto dto;
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "0:0",
+                ScorePenalty = "0:0"
+            };
+
+            Assert.IsFalse(dto.HasPenalty);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "1:0",
+                ScorePenalty = "0:0"
+            };
+
+            Assert.IsFalse(dto.HasPenalty);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "1:0",
+                ScorePenalty = "1:0"
+            };
+
+            Assert.IsTrue(dto.HasPenalty);
+
+            dto = new GameDto()
+            {
+                ScoreP1 = "0:0",
+                ScoreP2 = "0:0",
+                ScoreP3 = "0:0",
+                ScoreOvertime = "0:0",
+                ScorePenalty = "1:0"
+            };
+
+            Assert.IsTrue(dto.HasPenalty);
         }
     }
 }

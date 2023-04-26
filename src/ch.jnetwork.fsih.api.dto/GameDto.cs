@@ -14,5 +14,21 @@ namespace ch.jnetwork.fsih.api.dto
         public string ScoreOvertime { get; set; }
         public string ScorePenalty { get; set; }
         public string Score { get; set; }
+
+        public bool HasPenalty
+        {
+            get
+            {
+                return ScorePenalty != "0:0";
+            }
+        }
+
+        public bool HasOvertime
+        {
+            get
+            {
+                return ScoreOvertime != "0:0" && !HasPenalty;
+            }
+        }
     }
 }
