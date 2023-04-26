@@ -147,6 +147,12 @@ List of games in the few next days
 http://inline-hockey.ch/api/fsih_game_center
 
 
+## Gameplaces
+
+List of all Gameplaces
+
+https://inline-hockey.ch/api/fsih_game_place
+
 
 ## Player details
 

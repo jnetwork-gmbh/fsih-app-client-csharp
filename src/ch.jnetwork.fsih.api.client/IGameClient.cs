@@ -5,8 +5,10 @@ namespace ch.jnetwork.fsih.api.client
 {
     public interface IGameClient
     {
-        Game[] Get(int competitionId);
+        GamePlace[] GetGameplaces();
+        Task<GamePlace[]> GetGameplacesAsync();
+        Game[] GetGames(int competitionId);
 
-        Task<Game[]> GetAsync(int competitionId);
+        Task<Game[]> GetGamesAsync(int competitionId);
     }
 }

@@ -30,7 +30,7 @@ namespace ch.jnetwork.fsih.api.client.test
         {
             Mock<IGameClient> gameClientMock = new();
 
-            gameClientMock.Setup(x => x.Get(1))
+            gameClientMock.Setup(x => x.GetGames(1))
                 .Returns(GameFaker.GetGames()
                 .Generate(10)
                 .ToArray());
@@ -41,7 +41,32 @@ namespace ch.jnetwork.fsih.api.client.test
 
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
+            Assert.IsNotNull(result[0].GamePlace);
             Assert.IsTrue(result[0].ScorePenalty.IndexOf(':') > 0);
+        }
+
+
+        [TestMethod]
+        public void CheckGameResultByTeam()
+        {
+            Mock<IGameClient> gameClientMock = new();
+
+            var gamesList = GameFaker.GetGames().Generate(10).ToArray();
+
+            gameClientMock.Setup(x => x.GetGames(1))
+                          .Returns(gamesList);
+
+            FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
+
+            var teamIdFilter = gamesList.First().Team1Id;
+
+            var result = fsihAppApi.GetGames(1, teamIdFilter);
+
+            Assert.IsNotNull(result[0].TeamHome);
+            Assert.IsNotNull(result[0].TeamAway);
+            Assert.IsNotNull(result[0].GamePlace);
+            Assert.IsTrue(result[0].ScorePenalty.IndexOf(':') > 0);
+            Assert.IsTrue(result.Length >= 1);
         }
     }
 }

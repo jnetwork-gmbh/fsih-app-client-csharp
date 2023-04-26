@@ -10,11 +10,35 @@ namespace ch.jnetwork.fsih.api.client
     public class GameClient : IGameClient
     {
         /// <summary>
+        /// Get all game places
+        /// </summary>
+        /// <returns>Array of Game places</returns>
+        public GamePlace[] GetGameplaces()
+        {
+            using (IRestClient client = new RestClient())
+            {
+                return client.Get<GamePlace[]>($"/api/fsih_game_place");
+            }
+        }
+
+        /// <summary>
+        /// Get all game places async
+        /// </summary>
+        /// <returns>Array of Game places</returns>
+        public async Task<GamePlace[]> GetGameplacesAsync()
+        {
+            using (IRestClient client = new RestClient())
+            {
+                return await client.GetAsync<GamePlace[]>($"/api/fsih_game_place");
+            }
+        }
+
+        /// <summary>
         /// Get Gameplan
         /// </summary>
         /// <param name="competitionId">Competition ID</param>
         /// <returns>Array of Games</returns>
-        public Game[] Get(int competitionId)
+        public Game[] GetGames(int competitionId)
         {
             using (IRestClient client = new RestClient())
             {
@@ -27,7 +51,7 @@ namespace ch.jnetwork.fsih.api.client
         /// </summary>
         /// <param name="competitionId">Competition ID</param>
         /// <returns>Array of Games</returns>
-        public async Task<Game[]> GetAsync(int competitionId)
+        public async Task<Game[]> GetGamesAsync(int competitionId)
         {
             using (IRestClient client = new RestClient())
             {
