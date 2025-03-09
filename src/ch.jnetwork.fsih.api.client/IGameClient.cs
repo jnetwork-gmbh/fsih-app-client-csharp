@@ -9,8 +9,8 @@ namespace ch.jnetwork.fsih.api.client
 
         Task<GamePlace[]> GetGameplacesAsync();
 
-        Game[] GetGames(int competitionId);
+        Game[] GetGames(int competitionId, int saisonId);
 
-        Task<Game[]> GetGamesAsync(int competitionId);
+        Task<Game[]> GetGamesAsync(int competitionId, int saisonId);
     }
 }

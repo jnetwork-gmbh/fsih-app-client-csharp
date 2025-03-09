@@ -10,7 +10,7 @@ namespace ch.jnetwork.fsih.api.client.test
         {
             GameClient client = new();
 
-            Game[] result = client.GetGames(27);
+            Game[] result = client.GetGames(27, 13);
 
             Assert.AreNotEqual(0, result.Length);
             Assert.IsNotNull(result[0]);
@@ -28,7 +28,7 @@ namespace ch.jnetwork.fsih.api.client.test
         {
             GameClient client = new();
 
-            Game[] result = client.GetGamesAsync(27).Result;
+            Game[] result = client.GetGamesAsync(27, 13).Result;
 
             Assert.AreNotEqual(0, result.Length);
             Assert.IsNotNull(result[0]);

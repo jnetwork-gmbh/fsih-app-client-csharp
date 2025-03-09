@@ -37,12 +37,13 @@ namespace ch.jnetwork.fsih.api.client
         /// Get Gameplan
         /// </summary>
         /// <param name="competitionId">Competition ID</param>
+        /// <param name="saisonId">Saison ID</param>
         /// <returns>Array of Games</returns>
-        public Game[] GetGames(int competitionId)
+        public Game[] GetGames(int competitionId, int saisonId)
         {
             using (IRestClient client = new RestClient())
             {
-                return client.Get<Game[]>($"/api/fsih_game?competition_id={competitionId}");
+                return client.Get<Game[]>($"/api/fsih_game?competition_id={competitionId}&season_id={saisonId}");
             }
         }
 
@@ -50,12 +51,13 @@ namespace ch.jnetwork.fsih.api.client
         /// Get Gameplan async
         /// </summary>
         /// <param name="competitionId">Competition ID</param>
+        /// <param name="saisonId">Saison ID</param>
         /// <returns>Array of Games</returns>
-        public async Task<Game[]> GetGamesAsync(int competitionId)
+        public async Task<Game[]> GetGamesAsync(int competitionId, int saisonId)
         {
             using (IRestClient client = new RestClient())
             {
-                return await client.GetAsync<Game[]>($"/api/fsih_game?competition_id={competitionId}");
+                return await client.GetAsync<Game[]>($"/api/fsih_game?competition_id={competitionId}&season_id={saisonId}");
             }
         }
     }

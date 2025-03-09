@@ -35,11 +35,12 @@ namespace ch.jnetwork.fsih.api.client
         /// Get Games for competition
         /// </summary>
         /// <param name="competitionid">competition id</param>
+        /// <param name="saisonId">saison id</param>
         /// <returns>Array of all Games for competition </returns>
-        public GameDto[] GetGames(int competitionid)
+        public GameDto[] GetGames(int competitionid, int saisonId)
         {
             GamePlace[] places = gameClient.GetGameplaces();
-            GameDto[] result = gameClient.GetGames(competitionid)
+            GameDto[] result = gameClient.GetGames(competitionid, saisonId)
                           .Select(x => new GameDto()
                           {
                               Id = x.Id,
@@ -64,12 +65,13 @@ namespace ch.jnetwork.fsih.api.client
         /// Get Games for competition filterd by team
         /// </summary>
         /// <param name="competitionid">competition id</param>
+        /// <param name="saisonId">saison id</param>
         /// <param name="teamId">ID of team to filter</param>
         /// <returns>Array of all Games for competition for single team</returns>
-        public GameDto[] GetGames(int competitionid, int teamId)
+        public GameDto[] GetGames(int competitionid, int saisonId, int teamId)
         {
             GamePlace[] places = gameClient.GetGameplaces();
-            GameDto[] result = gameClient.GetGames(competitionid)
+            GameDto[] result = gameClient.GetGames(competitionid, saisonId)
                           .Where(x => x.Team1Id == teamId || x.Team2Id == teamId)
                           .Select(x => new GameDto()
                           {

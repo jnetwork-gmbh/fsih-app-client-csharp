@@ -31,14 +31,14 @@ namespace ch.jnetwork.fsih.api.client.test
         {
             Mock<IGameClient> gameClientMock = new();
 
-            gameClientMock.Setup(x => x.GetGames(1))
+            gameClientMock.Setup(x => x.GetGames(1, 1))
                 .Returns(GameFaker.GetGames(true)
                 .Generate(10)
                 .ToArray());
 
             FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
 
-            var result = fsihAppApi.GetGames(1);
+            var result = fsihAppApi.GetGames(1, 1);
 
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
@@ -57,13 +57,13 @@ namespace ch.jnetwork.fsih.api.client.test
             var gamesList = GameFaker.GetGames(true).Generate(10).ToArray();
             var teamIdFilter = gamesList.First().Team1Id;
 
-            gameClientMock.Setup(x => x.GetGames(1))
+            gameClientMock.Setup(x => x.GetGames(1, 1))
                           .Returns(gamesList);
 
             FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
 
 
-            var result = fsihAppApi.GetGames(1, teamIdFilter);
+            var result = fsihAppApi.GetGames(1, 1, teamIdFilter);
 
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
@@ -80,14 +80,14 @@ namespace ch.jnetwork.fsih.api.client.test
         {
             Mock<IGameClient> gameClientMock = new();
 
-            gameClientMock.Setup(x => x.GetGames(1))
+            gameClientMock.Setup(x => x.GetGames(1, 1))
                 .Returns(GameFaker.GetGames(false)
                 .Generate(10)
                 .ToArray());
 
             FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
 
-            var result = fsihAppApi.GetGames(1);
+            var result = fsihAppApi.GetGames(1, 1);
 
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
@@ -103,14 +103,14 @@ namespace ch.jnetwork.fsih.api.client.test
 
             var gamesList = GameFaker.GetGames(false).Generate(10).ToArray();
 
-            gameClientMock.Setup(x => x.GetGames(1))
+            gameClientMock.Setup(x => x.GetGames(1, 1))
                           .Returns(gamesList);
 
             FsihAppApi fsihAppApi = new(null, gameClientMock.Object);
 
             var teamIdFilter = gamesList.First().Team1Id;
 
-            var result = fsihAppApi.GetGames(1, teamIdFilter);
+            var result = fsihAppApi.GetGames(1, 1, teamIdFilter);
 
             Assert.IsNotNull(result[0].TeamHome);
             Assert.IsNotNull(result[0].TeamAway);
