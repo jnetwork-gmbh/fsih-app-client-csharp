@@ -14,7 +14,7 @@ namespace ch.jnetwork.fsih.api.client.client
         /// <summary>
         /// Base URI of API
         /// </summary>
-        private const string BASEURL = "http://inline-hockey.ch";
+        private const string BASEURL = "https://inline-hockey.ch";
 
         /// <summary>
         /// HTTP Client to Access the API
@@ -26,6 +26,7 @@ namespace ch.jnetwork.fsih.api.client.client
         /// </summary>
         public RestClient()
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             client = new WebClient
             {
                 BaseAddress = BASEURL
